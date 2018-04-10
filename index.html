@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chat</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script>
+
+        const smileys = {
+            ':)': 'smiley.jpg',
+            '(y)': 'thumbsup.jpg',
+            '(l)': 'heart.jpg'
+        }
+
+        function escapeSpecialChars(regex) {
+            return regex.replace(/([()[{*+.$^\\|?])/g, '\\$1');
+        }
+
+        function sendMessage() {
+            let message = document.getElementById("textMessage").value;
+            for (var i in smileys) {
+                var regex = new RegExp(escapeSpecialChars(i), 'g');
+                message = message.replace(regex, '<img src="' + smileys[i] + '" height="20px"/>');
+                console.log(message);
+            }
+            let reply = document.createElement('div');
+            reply.innerHTML = message;
+            document.getElementById("messages").appendChild(reply);
+            document.getElementById("textMessage").value = "";
+        }
+    </script>
+</head>
+
+<body>
+    <div>
+        <div id="messages">
+        </div>
+        <textarea id="textMessage" placeholder="enter your smiley char and click send"></textarea>
+    </div>
+    <input type="submit" onclick="sendMessage();">
+</body>
+
+</html>

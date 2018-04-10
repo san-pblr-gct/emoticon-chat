@@ -1,0 +1,12 @@
+#messages
+{
+    min-height:400px;
+    width:300px;
+    border: 1px solid black;
+}
+
+textarea
+{
+    width:300px;
+    border: 1px solid black;
+}
